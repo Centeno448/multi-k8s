@@ -20,3 +20,16 @@ after_success:
   - docker push dcenteno448/multi-nginx
   - docker push dcenteno448/multi-server
   - docker push dcenteno448/multi-worker
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-913112880583'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
